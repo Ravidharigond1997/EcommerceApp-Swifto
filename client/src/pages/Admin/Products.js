@@ -29,15 +29,19 @@ const Products = () => {
           <AdminMenu />
         </div>
         <div className="col-md-9">
-          <h1>All Products</h1>
-          <div className="d-flex">
+          <h1 className="m-2">All Products</h1>
+          <div className="d-flex flex-wrap">
             {products?.map((p) => (
               <Link
                 to={`/dashboard/admin/product/${p.slug}`}
                 key="p._id"
                 className="product-Link"
               >
-                <div className="card" style={{ width: "18rem" }} key={p._id}>
+                <div
+                  className="card m-3 flext align-center"
+                  style={{ width: "18rem" }}
+                  key={p._id}
+                >
                   <img
                     src={`/api/v1/product/product-photo/${p._id}`}
                     className="card-img-top"
