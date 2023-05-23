@@ -2,6 +2,7 @@ import express from "express";
 import { isAdmin, requireSingIn } from "../middleware/authMiddleware.js";
 import formidable from "express-formidable";
 import {
+  categoryProductController,
   createProductController,
   deleteProductContoller,
   filterProductController,
@@ -52,3 +53,6 @@ router.get("/product-list/:page", perPagePRoductcontroller);
 
 //search based on keywords
 router.get("/search/:keyword", searchProductController);
+
+//category wise product
+router.get("/product-category/:slug", categoryProductController);
