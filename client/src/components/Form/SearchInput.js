@@ -2,6 +2,7 @@ import React from "react";
 import { useSearch } from "../../contaxt/search";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function SearchInput() {
   const [values, setValues] = useSearch();
@@ -16,7 +17,7 @@ function SearchInput() {
       setValues({ ...values, results: data });
       navigate("/search");
     } catch (error) {
-      console.log(error);
+      toast.error("Failed to access");
     }
   };
   return (

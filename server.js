@@ -8,6 +8,7 @@ import authRouter from "./router/authRouter.js";
 import categoryRouter from "./router/categoryRouter.js";
 import productRouter from "./router/productRouter.js";
 import cors from "cors";
+import path from "path";
 
 //configure env
 dotenv.config();
@@ -22,6 +23,7 @@ const app = express();
 app.use(express.json());
 app.use(morgan("dev"));
 app.use(cors());
+app.use(express.static(path.join(__dirname, "client/build")));
 
 //routers
 app.use("/api/v1/auth", authRouter);
@@ -29,10 +31,8 @@ app.use("/api/v1/category", categoryRouter);
 app.use("/api/v1/product", productRouter);
 
 //rest API
-app.get("/", (req, res) => {
-  res.send({
-    message: "Welcome to Ecomerce app",
-  });
+app.use("*", function (req, res) {
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
 //PORT

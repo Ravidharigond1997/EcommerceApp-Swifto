@@ -4,9 +4,12 @@ import { useAuth } from "../contaxt/auth";
 import { toast } from "react-toastify";
 import SearchInput from "./Form/SearchInput";
 import useCategory from "../Hooks/useCategory";
+import { useCart } from "../contaxt/cart.js";
+import { Badge } from "antd";
 
 function Header() {
   const [auth, setAuth] = useAuth();
+  const [cart] = useCart();
   const categories = useCategory();
   const handleLoguot = () => {
     setAuth({
@@ -120,9 +123,11 @@ function Header() {
                 </>
               )}
               <li className="nav-item">
-                <NavLink className="nav-link" to="/cart">
-                  Cart(0)
-                </NavLink>
+                <Badge count={cart?.length} snowZero>
+                  <NavLink className="nav-link" to="/cart">
+                    Cart
+                  </NavLink>
+                </Badge>
               </li>
             </ul>
           </div>
